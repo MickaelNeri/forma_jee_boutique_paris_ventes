@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.parisventes.bean.BDD;
 import com.parisventes.servlets.Home;
 
 
@@ -27,41 +28,39 @@ public class Articles extends HttpServlet {
         super();
     }
 
-    public String readFile(HttpServletRequest request, Integer id) { 
-        String html = new String(); 
-        try { 
-          List<String> allLines = Files.readAllLines(Paths.get(Home.FILENAME)); 
-           
-          for (int i = 0; i < allLines.size(); i++) { 
-     
-            String[] arr = allLines.get(i).split("\\|"); 
-            Integer tabId = 0; 
-            try { 
-              tabId = Integer.parseInt(arr[0]); 
-            } catch (NumberFormatException e) { 
-              System.out.println(e.getMessage()); 
-            } 
-            if (tabId == id) { 
-              html = "<article><h4>"; 
-              html += arr[1] + "</h4><figure><img src=\""; 
-              html += request.getContextPath() + "/img/" + arr[2] + "\" alt=\"\"><figcaption>"; 
-              html += arr[3] + "</figcaption></figure><span>"; 
-              html += arr[4] + "</span></article>";
-              return html; 
-            }else { 
-              html = "Aucun article n'existe avec cet identifiant"; 
-            } 
-          } 
-     
-        } catch (IOException e) { 
-        	e.printStackTrace();
-        } 
-        return html;
-    }
+	public String readFile(HttpServletRequest request, Integer id) {
+		String html = new String();
+		// List<String> allLines = Files.readAllLines(Paths.get(Home.FILENAME));
+		BDD bdd = new BDD(Home.FILENAME);
+		List<String> allLines = bdd.readFile();
+		for (int i = 0; i < allLines.size(); i++) {
+
+			String[] arr = allLines.get(i).split("\\|");
+			Integer tabId = 0;
+			try {
+				tabId = Integer.parseInt(arr[0]);
+			} catch (NumberFormatException e) {
+				System.out.println(e.getMessage());
+			}
+			if (tabId == id) {
+				html = "<article><h4>";
+				html += arr[1] + "</h4><figure><img src=\"";
+				html += request.getContextPath() + "/img/" + arr[2] + "\" alt=\"\"><figcaption>";
+				html += arr[3] + "</figcaption></figure><span>";
+				html += arr[4] + "</span></article>";
+				return html;
+			} else {
+				html = "Aucun article n'existe avec cet identifiant";
+			}
+		}
+
+		return html;
+	}
     
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<String> allLines = Home.getAllLines();
+		BDD bdd = new BDD(Home.FILENAME);
+		List<String> allLines = bdd.readFile();
 
 		try {
 			Integer id   = Integer.parseInt(request.getParameter("id"));

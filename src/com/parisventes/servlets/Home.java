@@ -29,8 +29,9 @@ public class Home extends HttpServlet {
         super();
     }
 
-    public static ArrayList<String> getAllLines(){
-    	ArrayList<String> allLines = null;
+    public List<String> getAllLines(){
+		BDD bdd = new BDD(FILENAME);
+		List<String> allLines = bdd.readFile();
     	try {
     		allLines = (ArrayList<String>) Files.readAllLines(Paths.get(FILENAME));
     	} catch( IOException e) {
@@ -94,7 +95,7 @@ public class Home extends HttpServlet {
     
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//ArrayList<String> allLines = getAllLines();
+		//List<String> allLines = getAllLines();
 		BDD bdd = new BDD(FILENAME);
 		List<String> allLines = bdd.readFile();
 		String allHtml ="";

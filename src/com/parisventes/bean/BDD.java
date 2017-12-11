@@ -21,7 +21,7 @@ public class BDD {
 	
 	public List<String>readFile(){
     	try {
-    		allLines = (List<String>) Files.readAllLines( Paths.get(this.fileName) );
+    		allLines = (List<String>) Files.readAllLines( Paths.get(fileName) );
     	} catch( IOException e) {
     		e.printStackTrace();
     	}
