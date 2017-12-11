@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.parisventes.bean.Article;
+import com.parisventes.bean.BDD;
 
 
 /**
@@ -92,7 +94,9 @@ public class Home extends HttpServlet {
     
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<String> allLines = getAllLines();
+		//ArrayList<String> allLines = getAllLines();
+		BDD bdd = new BDD(FILENAME);
+		List<String> allLines = bdd.readFile();
 		String allHtml ="";
 		for (String line : allLines) {
 			String[] splitted = line.split("\\|");
