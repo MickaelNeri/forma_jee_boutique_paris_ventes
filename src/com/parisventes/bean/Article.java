@@ -3,6 +3,7 @@ package com.parisventes.bean;
 import javax.servlet.http.HttpServletRequest;
 
 public class Article {
+	private Integer id;
 	private String title;
 	private String linkImg;
 	private String description;
@@ -50,7 +51,7 @@ public class Article {
 		this.price = price;
 	}
 
-	 public String makeHtml(String[] attributes, HttpServletRequest request) {
+	public String makeHtml(String[] attributes, HttpServletRequest request) {
 	    	String articleHtml = "";
 			articleHtml += "<article><h4>";
 			articleHtml += attributes[1];
@@ -72,10 +73,41 @@ public class Article {
 			articleHtml += "</span>€";
 			articleHtml += "</article>";
 	    	return articleHtml;
-	    }
+	 }
 	
+	public String toHtml(HttpServletRequest request) {
+		String articleHtml = "";
+		articleHtml += "<article><h4>";
+		articleHtml += title;
+		articleHtml += "</h4>";
+		articleHtml += "<figure>";
+		articleHtml += "<a href=\"";
+		articleHtml += request.getContextPath() + "/articles?id=";
+		articleHtml += id;
+		articleHtml += "\"><img src=\"";
+		articleHtml += request.getContextPath();
+		articleHtml	+= "/img/";
+		articleHtml += linkImg;
+		articleHtml += "\"></a>";
+		articleHtml += "<figcaption>";
+		articleHtml += description;
+		articleHtml += "</figcaption></figure>";
+		articleHtml += "<span>";
+		articleHtml += price;
+		articleHtml += "</span>€";
+		articleHtml += "</article>";
+    	return articleHtml;
+		
+	}
 	
-	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	@Override
 	public String toString() {
 		return "Article [title=" + title + ", linkImg=" + linkImg + ", description=" + description + ", price=" + price

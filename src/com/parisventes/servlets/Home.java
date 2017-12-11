@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.parisventes.bean.Article;
+
 
 /**
  * Servlet implementation class Home
@@ -54,32 +56,41 @@ public class Home extends HttpServlet {
 		articleHtml += "</figcaption></figure>";
 		articleHtml += "<span>";
 		articleHtml += attributes[4];
-		articleHtml += "</span>€";
+		articleHtml += "</span>â‚¬";
 		articleHtml += "</article>";
     	return articleHtml;
     }
     
-  /*  public String makeHtml(Article a, HttpServletRequest request) {
+    public String makeHtml(Article a, HttpServletRequest request) {
     	String articleHtml = "";
 		articleHtml += "<article><h4>";
 		articleHtml += a.getTitle();
 		articleHtml += "</h4>";
 		articleHtml += "<figure>";
-		articleHtml += "<img src=\"";
+		articleHtml += "<a href=\"";
+		articleHtml += request.getContextPath() + "/articles?id=";
+		articleHtml += a.getId();
+		articleHtml += "\"><img src=\"";
 		articleHtml += request.getContextPath();
 		articleHtml	+= "/img/";
 		articleHtml += a.getLinkImg();
-		articleHtml += "\">";
+		articleHtml += "\"></a>";
 		articleHtml += "<figcaption>";
 		articleHtml += a.getDescription();
 		articleHtml += "</figcaption></figure>";
 		articleHtml += "<span>";
 		articleHtml += a.getPrice();
-		articleHtml += "</span>€";
+		articleHtml += "</span>â‚¬";
 		articleHtml += "</article>";
     	return articleHtml;
-    }*/
 
+    }
+
+    
+
+    
+    
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<String> allLines = getAllLines();
 		String allHtml ="";
