@@ -2,3 +2,4 @@
 2|T-SHIRT 100 REGULAR GYM & PILATES HOMME NOIR|tshirt_noir.jpg|Choisissez le T-Shirt Sportee Gym & Pilates pour sa forme regular, son col rond, sa douceur. Ce T-Shirt est incontournable pour vos entrainements de Gym & Pilates|2.49
 3|T-SHIRT 100 REGULAR GYM & PILATES HOMME BLEU|tshirt_bleu.jpg|Choisissez le T-Shirt Sportee Gym & Pilates pour sa forme regular, son col rond, sa douceur. Ce T-Shirt est incontournable pour vos entrainements de Gym & Pilates|2.49
 4|T-SHIRT 100 REGULAR GYM & PILATES HOMME GRIS|tshirt_gris.jpg|Choisissez le T-Shirt Sportee Gym & Pilates pour sa forme regular, son col rond, sa douceur. Ce T-Shirt est incontournable pour vos entrainements de Gym & Pilates|2.49
+5|T-SHIRT 100 REGULAR GYM & PILATES HOMME GRIS|tshirt_jaune.jpg|Choisissez le T-Shirt Sportee Gym & Pilates pour sa forme regular, son col rond, sa douceur. Ce T-Shirt est incontournable pour vos entrainements de Gym & Pilates|2.49
