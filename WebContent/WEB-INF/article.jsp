@@ -1,6 +1,6 @@
 <%@ include file="layouts/header.jsp" %>
  
-  <article>
+  <!-- <article>
       <h4>T-SHIRT 100 REGULAR GYM & PILATES HOMME BLANC</h4>
       <figure>
         <img src="${pageContext.request.contextPath}/img/tshirt_blanc.jpg">
@@ -11,5 +11,8 @@
       
     </article>   
   
+   -->
+   ${allHtml}
+   
 <%@ include file="layouts/footer.jsp" %>
    

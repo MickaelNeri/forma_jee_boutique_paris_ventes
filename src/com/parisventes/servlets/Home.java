@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.parisventes.bean.Article;
-
 
 /**
  * Servlet implementation class Home
@@ -27,7 +25,7 @@ public class Home extends HttpServlet {
         super();
     }
 
-    public ArrayList<String> getAllLines(){
+    public static ArrayList<String> getAllLines(){
     	ArrayList<String> allLines = null;
     	try {
     		allLines = (ArrayList<String>) Files.readAllLines(Paths.get(FILENAME));
@@ -37,14 +35,14 @@ public class Home extends HttpServlet {
     	return allLines;
     }
     
-    public String makeHtml(String[] attributes, HttpServletRequest request) {
+    public static String makeHtml(String[] attributes, HttpServletRequest request) {
     	String articleHtml = "";
 		articleHtml += "<article><h4>";
 		articleHtml += attributes[1];
 		articleHtml += "</h4>";
 		articleHtml += "<figure>";
 		articleHtml += "<a href=\"";
-		articleHtml += request.getContextPath() + "/article?id=";
+		articleHtml += request.getContextPath() + "/articles?id=";
 		articleHtml += attributes[0];
 		articleHtml += "\"><img src=\"";
 		articleHtml += request.getContextPath();

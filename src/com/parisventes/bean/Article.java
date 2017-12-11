@@ -1,5 +1,7 @@
 package com.parisventes.bean;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class Article {
 	private String title;
 	private String linkImg;
@@ -48,6 +50,30 @@ public class Article {
 		this.price = price;
 	}
 
+	 public String makeHtml(String[] attributes, HttpServletRequest request) {
+	    	String articleHtml = "";
+			articleHtml += "<article><h4>";
+			articleHtml += attributes[1];
+			articleHtml += "</h4>";
+			articleHtml += "<figure>";
+			articleHtml += "<a href=\"";
+			articleHtml += request.getContextPath() + "/articles?id=";
+			articleHtml += attributes[0];
+			articleHtml += "\"><img src=\"";
+			articleHtml += request.getContextPath();
+			articleHtml	+= "/img/";
+			articleHtml += attributes[2];
+			articleHtml += "\"></a>";
+			articleHtml += "<figcaption>";
+			articleHtml += attributes[3];
+			articleHtml += "</figcaption></figure>";
+			articleHtml += "<span>";
+			articleHtml += attributes[4];
+			articleHtml += "</span>€";
+			articleHtml += "</article>";
+	    	return articleHtml;
+	    }
+	
 	
 	
 	@Override
