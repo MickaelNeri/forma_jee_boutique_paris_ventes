@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.parisventes.bean.Article;
 import com.parisventes.bean.BDD;
 import com.parisventes.servlets.Home;
 
@@ -22,7 +23,8 @@ import com.parisventes.servlets.Home;
 @WebServlet("/articles")
 public class Articles extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	public static final String FILENAME = "C:\\Users\\Administrateur\\Desktop\\Formation_POE\\08_JEE\\ParisVentes\\WebContent\\articles.txt";
+
 
     public Articles() {
         super();
@@ -57,29 +59,22 @@ public class Articles extends HttpServlet {
 		return html;
 	}
     
+	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BDD bdd = new BDD(Home.FILENAME);
+		BDD bdd = new BDD(FILENAME);
 		List<String> allLines = bdd.readFile();
 
+		Article art = new Article();
+		Integer id = 0;
 		try {
-			Integer id   = Integer.parseInt(request.getParameter("id"));
-			for (String line : allLines) {
-				String[] splitted = line.split("\\|");
-				if( Integer.parseInt(splitted[0]) == id) {
-					String allHtml = Home.makeHtml(splitted, request);
-					request.setAttribute("allHtml", allHtml);	
-				}
-			}	
+			  id = Integer.parseInt(request.getParameter("id"));
 		}catch(NumberFormatException e) {
-			e.printStackTrace();
-			
+			e.printStackTrace();		
 		}
+		String allHtml = art.findById(allLines, id, request);
+		request.setAttribute("allHtml", allHtml);	
 
-
-		
-		
-		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/article.jsp").forward(request, response);
 	}
 

@@ -90,20 +90,14 @@ public class Home extends HttpServlet {
     }
 
     
-
-    
-    
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//List<String> allLines = getAllLines();
 		BDD bdd = new BDD(FILENAME);
 		List<String> allLines = bdd.readFile();
-		String allHtml ="";
-		for (String line : allLines) {
-			String[] splitted = line.split("\\|");
-			 allHtml += makeHtml(splitted, request);
-		}
-		
+
+		Article art = new Article();
+		String allHtml = art.findAll(allLines, request);
 		request.setAttribute("allHtml", allHtml);
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
